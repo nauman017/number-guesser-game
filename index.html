@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess the Number</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: orangered;
+      color: white;
+      text-align: center;
+      padding-top: 50px;
+    }
+    input {
+      font-size: 20px;
+      padding: 5px;
+      border: 5px solid black;
+      border-radius: 20px;
+    }
+    button {
+      font-size: 20px;
+      padding: 5px 15px;
+      margin-left: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: pink;
+      box-shadow: 7px 4px 10px white;
+    }
+    button:hover {
+      background-color: lightsalmon;
+      font-size: 22px;
+    }
+    button:active {
+      background-color: brown;
+      font-size: 18px;
+    }
+    #chancesLeft {
+      font-size: 20px;
+      color: white;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 25px;
+    }
+    div {
+      margin: auto;
+      width: 80%;
+      max-width: 400px;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+      <h1>Guess the Number (1-10)</h1>
+      <input type="number" id="userGuess" min="1" max="10" />
+      <button onclick="checkGuess()">Submit</button>
+
+      <p id="result"></p>
+      <p id="chancesLeft">Chances Left: 3</p>
+
+  </div>
+
+  <script>
+    let secretNumber = Math.floor(Math.random() * 10) + 1;
+    let chances = 3;
+
+    function checkGuess() {
+      let guess = parseInt(document.getElementById("userGuess").value);
+
+      if (chances > 0) {
+        if (guess === secretNumber) {
+          document.getElementById("result").innerText = "🎉 Correct! You Win!";
+        } else {
+          chances--;
+          if (chances === 0) {
+            document.getElementById("result").innerText = "❌ Game Over! The number was " + secretNumber;
+          } else {
+            document.getElementById("result").innerText = "Wrong! Try again.";
+          }
+        }
+        document.getElementById("chancesLeft").innerText = "Chances Left: " + chances;
+      }
+    }
+    
+  </script>
+
+</body>
+</html>
